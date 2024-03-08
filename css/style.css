@@ -16,46 +16,56 @@ body {
   width: 100%;
   background-color: whitesmoke;
   font-family: 'Helvetica', sans-serif;
-  font-size: 12px;
+  font-size: 14px;
 }
 header {
-  /* display: flex; */
-  justify-content: space-between;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1;
   width: 100%;
   background-color: whitesmoke;
+  padding: calc(1rem - 5px);
 }
 .site-title {
   display: inline-block;
 }
 h1 {
   font-family: 'club-lithographer', sans-serif;
-  font-size: 18px;
-  padding: 10px 15px;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 20px;
+  -webkit-text-stroke: 0.5px;
+  padding: 5px;
 }
 .nav {
   display: block;
   margin-top: 7px;
-  padding: 10px 15px;
   float: right;
 }
 button {
   background-color: whitesmoke;
-  padding: 0px 6px;
+  color: black;
+  padding: 5px;
+}
+.active {
+  text-decoration: line-through 2px;
+  -webkit-text-decoration: line-through;
+  -webkit-text-decoration-thickness: 2px;
 }
 .bio,
 .contact {
   display: none;
 }
 .bio {
-  padding: 5px 15px 15px;
+  padding: 1rem;
+  padding-top: calc(1rem + 3px);
 }
 .contact {
-  padding: 5px 15px 12px;
+  padding: 1rem;
+  padding-bottom: calc(1rem - 3px);
 }
+
 .contact div {
   padding: 3px 0;
 }
@@ -70,14 +80,14 @@ button {
   height: 100dvh;
   overflow-y: scroll;
   scroll-behavior: smooth;
-  padding-top: 30px;
+  margin-top: 55px;
 }
 .image-wrapper {
   width: 100%;
   display: grid;
-  gap: 0.8rem;
-  padding: 0.8rem;
-  margin-bottom: 35px;
+  gap: 1rem;
+  padding: 0 1rem 1rem;
+  margin-bottom: 50px;
 }
 .image-wrapper div {
   width: 100%;
@@ -121,7 +131,6 @@ footer {
   display: flex;
   justify-content: space-between;
   font-family: 'Helvetica', sans-serif;
-  font-size: 12px;
   width: 100%;
   background-color: whitesmoke;
 }
@@ -130,16 +139,13 @@ footer a {
   color: black;
 }
 
-.img-info,
 .footer-info {
+  display: none;
   padding: 0.5rem;
 }
 .img-info {
   width: 100%;
-  padding: 10px 0.8rem;
-}
-.footer-info {
-  display: none;
+  padding: 1rem;
 }
 
 .hidden {
@@ -170,17 +176,20 @@ footer a {
 
   h1 {
     font-size: 60px;
-    padding: 0px 25px;
+    stroke: 2px;
+    -webkit-text-stroke: 2px;
+    padding: 1rem 2rem;
   }
   .bio {
     display: block;
     position: relative;
-    width: 40%;
-    padding: 0px 25px 0px 8px;
+    width: 50%;
+    padding: 0;
   }
   .bio p {
     position: absolute;
     bottom: 0;
+    padding-left: 1rem;
   }
 
   button {
@@ -202,7 +211,7 @@ footer a {
     width: 100vw;
     height: 68vh;
     overflow-y: unset;
-    padding: 0;
+    margin: 0;
   }
   .image-wrapper {
     height: 100%;
@@ -260,40 +269,23 @@ footer a {
     position: relative;
   }
 
-  .img-info,
+  .img-info {
+    width: 50%;
+  }
   .footer-info {
-    padding: 0.5rem;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .footer-info,
+  .bio {
+    width: 40%;
   }
   .img-info {
     width: 60%;
   }
-  .footer-info {
-    width: 40%;
-    display: flex;
-    justify-content: space-between;
-  }
 }
-
-/* @media (max-width: 900px) {
-  .construction {
-    z-index: 1;
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    text-align: center;
-    background-color: whitesmoke;
-    font-family: 'Helvetica', sans-serif;
-    font-size: 12px;
-  }
-  .construction div {
-    margin: 25px;
-  }
-  .construction a {
-    display: block;
-    text-decoration: none;
-    color: black;
-  }
-} */
