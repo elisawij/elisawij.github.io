@@ -188,7 +188,8 @@ footer a {
   .bio p {
     position: absolute;
     bottom: 0;
-    padding-left: 1rem;
+    padding: 1rem;
+    padding-right: 1.5rem;
   }
 
   button {
