@@ -49,9 +49,8 @@ button {
   padding: 5px;
 }
 .active {
-  text-decoration: line-through 2px;
+  text-decoration: line-through;
   -webkit-text-decoration: line-through;
-  -webkit-text-decoration-thickness: 2px;
 }
 .bio,
 .contact {
