@@ -1,0 +1,51 @@
+// function to check if a color is equal to black
+function isBlack(color) {
+  var match = /rgb\(\s*0\s*,\s*0\s*,\s*0\s*\)/.exec(color)
+  return match !== null
+}
+
+// function to check if a color is dark
+function isDark(color) {
+  var match = /rgb\((\d+).*?(\d+).*?(\d+)\)/.exec(color)
+  return (
+    parseFloat(match[1]) + parseFloat(match[2]) + parseFloat(match[3]) <
+    3 * (256 / 2)
+  ) // r+g+b should be less than half of max (3 * 256)
+}
+
+// Function to convert vertical to horizontal scrolling
+function HorScroll(vertscroll) {
+  vertscroll.preventDefault()
+  imageWrapper.scrollLeft(
+    imageWrapper.scrollLeft() +
+      vertscroll.originalEvent.deltaY +
+      vertscroll.originalEvent.deltaX
+  )
+}
+
+// Function to check if an element overlaps the vertical center of the viewport
+function isInViewport(element) {
+  const rect = element[0].getBoundingClientRect()
+  return (
+    rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2
+  )
+}
+
+// Function to modify site content & colors according to element in viewport
+function changeContent() {
+  // Find the corresponding hidden p element for this div.kolom & get it's color
+  var hiddenP = $(this).find('.hidden')
+  var scrollColor = hiddenP.css('color')
+
+  // Display the content of p.hidden in .img-info
+  $('.img-info').html(hiddenP.html())
+
+  // Change the color of selected elements accordingly
+  $('header, footer, button').css('background-color', scrollColor)
+  $('.site-title, .img-info, button').css(
+    'color',
+    // Change text color based on darkness of background color
+    isDark($('header').css('background-color')) ? 'white' : 'black'
+  )
+  $('#colorWord').css('color', scrollColor)
+}

@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'sligoil';
+  src: url(/assets/Sligoil-Micro.otf);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -10,37 +15,39 @@
 *::-webkit-scrollbar {
   display: none;
 }
-
+a > div {
+  margin-right: 0;
+}
 body {
   height: 100dvh;
   width: 100%;
   background-color: whitesmoke;
-  font-family: 'Helvetica', sans-serif;
-  font-size: 14px;
+  font-family: 'sligoil', sans-serif;
+  font-size: 15px;
 }
+
+/* HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER HEADER  */
+
 header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: fixed;
-  top: 0;
-  left: 0;
   z-index: 1;
   width: 100%;
-  background-color: whitesmoke;
   padding: calc(1rem - 5px);
+  background-color: whitesmoke;
 }
-.site-title {
-  display: inline-block;
-}
+
 h1 {
-  font-family: 'club-lithographer', sans-serif;
-  font-style: italic;
   font-weight: 400;
+  text-transform: uppercase;
   font-size: 20px;
-  -webkit-text-stroke: 0.5px;
   padding: 5px;
 }
+
 .nav {
   display: block;
-  margin-top: 7px;
   float: right;
 }
 button {
@@ -52,200 +59,202 @@ button {
   text-decoration: line-through;
   -webkit-text-decoration: line-through;
 }
+
 .bio,
 .contact {
   display: none;
+  position: absolute;
+  top: 55px;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem;
+  background-color: whitesmoke;
 }
 .bio {
-  padding: 1rem;
-  padding-top: calc(1rem + 3px);
-}
-.contact {
-  padding: 1rem;
-  padding-bottom: calc(1rem - 3px);
-}
-
-.contact div {
-  padding: 3px 0;
+  padding-top: calc(1.2rem + 3px);
+  padding-bottom: calc(1.2rem + 3px);
 }
 .contact a {
+  display: block;
+  padding: 3px 0;
   color: black;
   text-decoration: none;
 }
 
-/* --------- BODY --------- */
-
+/* MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN MAIN */
 .image-container {
+  padding-top: 56px; /* header height */
+  padding-bottom: 83.75px; /* footer height */
   height: 100dvh;
   overflow-y: scroll;
   scroll-behavior: smooth;
-  margin-top: 55px;
 }
+
 .image-wrapper {
-  width: 100%;
   display: grid;
   gap: 1rem;
-  padding: 0 1rem 1rem;
-  margin-bottom: 50px;
-}
-.image-wrapper div {
-  width: 100%;
+  padding: 1rem;
 }
 
-video {
-  width: 100%;
-  display: block;
-  border-radius: 3px;
-}
-
-img {
-  width: 100%;
-  display: block;
-}
 .img-column {
   display: flex;
   gap: 0.5rem;
-  width: 100%;
 }
 .img-column img {
   width: calc((100% - 0.5rem) / 2);
 }
 
-/* .hover-box {
-  position: relative;
-} */
 .img-hover {
-  margin-top: 0.8rem;
+  margin-top: 1rem;
 }
-/* .hover-box:hover .img-hover {
-  display: block;
-} */
 
-/* ----- FOOTER ----- */
+img,
+video {
+  width: 100%;
+  display: block;
+}
+video {
+  border-radius: 3px;
+}
+
+/* FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER FOOTER */
+
 footer {
   position: fixed;
   z-index: 1;
   bottom: 0;
   left: 0;
-  display: flex;
-  justify-content: space-between;
-  font-family: 'Helvetica', sans-serif;
   width: 100%;
   background-color: whitesmoke;
-}
-footer a {
-  text-decoration: none;
-  color: black;
 }
 
 .footer-info {
   display: none;
-  padding: 0.5rem;
 }
 .img-info {
   width: 100%;
   padding: 1rem;
 }
-
 .hidden {
   display: none;
 }
 
-/* ---------------- MEDIAQUERIES ------------------- */
+@media screen and (min-width: 365px) {
+  .image-container {
+    padding-bottom: 66.5px;
+  }
+}
 
-/* todo: and (orientation: landscape) ? */
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 566px) {
   body {
-    height: 100vh;
+    font-size: 16px;
+  }
+  .bio {
+    padding: calc(1.5rem + 3px) 2rem;
+  }
+  .contact {
+    padding: 1.5rem 2rem;
+  }
+  .image-container {
+    padding-bottom: 68.8px; /* footer height */
+  }
+  .image-wrapper {
+    padding: 2rem;
+    gap: 2rem;
+  }
+  .img-column {
+    gap: 1.5rem;
+  }
+  .img-column img {
+    width: calc((100% - 1.5rem) / 2);
+  }
+  .img-hover {
+    margin-top: 2rem;
+  }
+}
+
+@media screen and (min-width: 724px) {
+  .image-container {
+    padding-bottom: 50.4px; /* footer height */
+  }
+}
+
+@media screen and (min-width: 800px) {
+  body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
-
   header {
-    display: flex;
-    justify-content: space-between;
     position: relative;
-    padding: 20px;
-  }
-
-  .nav {
-    display: none;
-  }
-
-  h1 {
-    font-size: 60px;
-    stroke: 2px;
-    -webkit-text-stroke: 2px;
-    padding: 1rem 2rem;
-  }
-  .bio {
-    display: block;
-    position: relative;
-    width: 50%;
     padding: 0;
   }
-  .bio p {
-    position: absolute;
-    bottom: 0;
-    padding: 1rem;
-    padding-right: 1.5rem;
+  .site-title,
+  .nav {
+    padding: calc(1rem - 5px); /* padding rond text */
   }
-
-  button {
-    font-size: 82px;
-    cursor: url(https://cur.cursors-4u.net/nature/nat-2/nat134.cur), auto !important;
+  .site-title {
+    width: 70%;
   }
-
-  footer a,
-  header a {
-    cursor: url(https://cur.cursors-4u.net/nature/nat-2/nat134.cur), auto !important;
+  .nav {
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+    border-left: 1.75px solid black;
+    border-bottom: 1.75px solid black;
   }
-  .cursorhand:hover a {
-    cursor: url(https://cur.cursors-4u.net/symbols/sym-1/sym57.cur), auto !important;
+  .nav,
+  .bio,
+  .contact {
+    width: 30%;
   }
+  .bio,
+  .contact {
+    left: unset;
+    right: 0;
+  }
+  /* .bio {
+    font-size: 13.9px;
+  } */
 
-  /* --------- BODY --------- */
-
+  main {
+    /* body - header+footer */
+    height: calc(100% - (55px + 55px));
+  }
   .image-container {
-    width: 100vw;
-    height: 68vh;
+    height: 100%;
     overflow-y: unset;
-    margin: 0;
+    padding: 1.5rem 0;
   }
   .image-wrapper {
     height: 100%;
-    width: auto;
     display: flex;
+    align-items: flex-start;
     overflow-x: scroll;
-    gap: 1rem;
-    margin: 0;
-    padding: 0;
   }
-  .image-wrapper div {
+  .kolom,
+  .kolom div {
     height: 100%;
-    width: auto;
+    width: fit-content;
   }
-
+  img,
   video {
     height: 100%;
     width: auto;
-    display: block;
+    display: unset; /* display: block zorgde voor gekke onhandelbare marges in SAFARI >:-( */
+  }
+  video {
     border-radius: 8px;
   }
 
-  img {
-    height: 100%;
-    width: auto;
-    display: block;
-  }
   .img-column {
     flex-direction: column;
-    height: 100%;
-    gap: 1rem;
+    align-items: flex-start;
+    /* height: 100%;  */
+    /* gap: 1.5rem; */
   }
   .img-column img {
-    height: calc((100% - 1rem) / 2);
+    height: calc((100% - 1.5rem) / 2);
     width: auto;
   }
 
@@ -264,28 +273,23 @@ footer a {
     opacity: 1;
   }
 
-  /* ----- FOOTER ----- */
-  footer {
-    position: relative;
+  /* specifieke cursor voor Graduation website */
+  .cursorhand:hover a {
+    cursor: url(https://cur.cursors-4u.net/symbols/sym-1/sym57.cur), auto !important;
   }
 
-  .img-info {
-    width: 50%;
-  }
-  .footer-info {
-    width: 50%;
+  footer {
     display: flex;
-    justify-content: space-between;
-    padding: 1rem;
+    align-items: center;
+    position: relative;
+    min-height: 55px;
   }
 }
 
-@media screen and (min-width: 1200px) {
-  .footer-info,
-  .bio {
-    width: 40%;
-  }
-  .img-info {
-    width: 60%;
+@media screen and (min-width: 1000px) {
+  .nav,
+  .bio,
+  .contact {
+    width: 25%;
   }
 }
