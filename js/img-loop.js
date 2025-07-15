@@ -1,67 +1,52 @@
-// ----- loop specified images on hover ----- //
+document.addEventListener('DOMContentLoaded', function () {
+  // === IMG LOOP ON SCROLL INTO VIEW ===
+  document.querySelectorAll('img.img-loop').forEach((img) => {
+    let loop
+    let i = 0
+    const altSrcs = img.dataset.altSrc.split(';')
+    const originalSrc = img.src
 
-var loop // Declare it on global scope.
+    const imgObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            loop = setInterval(() => {
+              if (i >= altSrcs.length) {
+                i = 0
+                img.src = originalSrc
+              } else {
+                img.src = altSrcs[i]
+                i++
+              }
+            }, 800)
+          } else {
+            clearInterval(loop)
+            img.src = originalSrc
+            i = 0
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
 
-$('img.img-loop')
-  .mouseover(function () {
-    $(this).data('old-src', $(this).attr('src'))
-    var alt_src = $(this).data('alt-src').split(';')
-    var that = $(this)
-    var i = 0
-    loop = setInterval(function () {
-      // Set an interval
-      if (i == alt_src.length) {
-        i = 0
-        that.attr('src', that.data('old-src'))
-      } else {
-        that.attr('src', alt_src[i])
-        i++
-      }
-    }, 600) // Interval delay in millisecs.
-  })
-  .mouseout(function () {
-    clearInterval(loop) // Clear the interval
-    $(this).attr('src', $(this).data('old-src'))
+    imgObserver.observe(img)
   })
 
-// ----- navigation ----- //
+  // === VIDEO PLAY/PAUSE ON SCROLL INTO VIEW ===
+  document.querySelectorAll('video.auto-play-on-view').forEach((video) => {
+    const videoObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play().catch(() => {}) // Avoid uncaught errors if autoplay is blocked
+          } else {
+            video.pause()
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
 
-// Function to check visibility of div#bio & div#contact
-function checkVisibility() {
-  $('.nav button').each(function () {
-    var targetDivId = $(this).attr('id')
-    if ($('div#' + targetDivId).is(':visible')) {
-      $('button#' + targetDivId).addClass('active')
-    } else {
-      $('button#' + targetDivId).removeClass('active')
-    }
-  })
-}
-// navigation toggle (about + contact)
-$(document).ready(function () {
-  // toggle visibility on button click
-  $('button#about').click(function () {
-    $('.bio').toggle()
-    $('.contact').hide()
-    checkVisibility()
-  })
-  $('button#contact').click(function () {
-    $('.contact').toggle()
-    $('.bio').hide()
-    checkVisibility()
+    videoObserver.observe(video)
   })
 })
-
-// hide div when clicking elsewhere
-// $(document).mouseup(function (e) {
-//   var bio = $('.bio')
-//   var contact = $('.contact')
-//   if (!bio.is(e.target) && bio.has(e.target).length === 0) {
-//     bio.hide()
-//   }
-//   if (!contact.is(e.target) && contact.has(e.target).length === 0) {
-//     contact.hide()
-//   }
-// })
-
-// todo: zorgen dat laatste functie toggle niet tegengaat
