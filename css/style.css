@@ -169,14 +169,17 @@ footer {
   max-height: 100%;
 }
 
+.card .img-loop,
+.card .video-darkbg,
+.card .video-lightbg {
+  border-radius: 5px;
+}
 .card .video-darkbg {
   border: 1px solid gray;
-  border-radius: 10px;
   box-shadow: -5px 5px 10px whitesmoke;
 }
 .card .video-lightbg {
   border: 1px solid darkgray;
-  border-radius: 10px;
   box-shadow: -5px 5px 10px gray;
 }
 
@@ -213,7 +216,7 @@ footer {
   background-image: url(/images/elise/EVT_BG-min.jpg);
 }
 #section-GRAD {
-  /* background-image: url(/images/graduation/grad-folder.jpeg); */
+  background-image: url(/images/graduation/GRAD_BG.jpg);
 }
 #section-BE {
   background-image: url(/images/BE/BE_BG_1-min.jpg);
@@ -344,6 +347,11 @@ footer {
     display: inline-block;
     font-size: 18px;
   }
+  .card .img-loop,
+  .card .video-darkbg,
+  .card .video-lightbg {
+    border-radius: 8px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -359,6 +367,11 @@ footer {
   }
   .card:last-of-type {
     margin-right: 60px;
+  }
+  .card .img-loop,
+  .card .video-darkbg,
+  .card .video-lightbg {
+    border-radius: 10px;
   }
 
   .indicators {
