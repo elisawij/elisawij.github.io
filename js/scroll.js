@@ -3,7 +3,7 @@
 // === CONFIG ===
 const SCROLL_STEP = 15
 const SCROLL_SPEED = 5 // ms between steps
-const MOMENTUM_DECAY = 0.95
+const MOMENTUM_DECAY = 0.88
 const MOMENTUM_MIN_VELOCITY = 0.3
 
 // === SCROLL AREA + GLOBAL STATE ===
@@ -170,7 +170,20 @@ const observer = new IntersectionObserver(
 sections.forEach((section) => observer.observe(section))
 
 // HOVER CURSOR
-if (window.matchMedia('(hover: hover)').matches) {
+// function isTouchDevice() {
+//   return (
+//     !window.matchMedia('(hover: none)').matches ||
+//     window.matchMedia('(pointer: coarse)').matches
+//   )
+// }
+function isHoverDevice() {
+  return (
+    'ontouchstart' in window ||
+    navigator.maxTouchPoints > 0 ||
+    navigator.msMaxTouchPoints > 0
+  )
+}
+if (isHoverDevice) {
   // Run this code only on devices that support hover
 
   var cursor = document.getElementById('cursor')
