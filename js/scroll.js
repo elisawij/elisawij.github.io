@@ -54,10 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (wrapper) stopContinuousScrollWithMomentum(wrapper)
     }
   })
-
-  window.addEventListener('blur', () => {
-    stopContinuousScrollWithMomentum(getVisibleCardWrapper())
-  })
 })
 
 function getVisibleCardWrapper() {
