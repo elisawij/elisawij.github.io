@@ -1,5 +1,7 @@
 // FULL WORKING SCRIPT FOR VERTICAL SNAP + HORIZONTAL SMOOTH SCROLL
 
+let suppressFocus = false
+
 // === CONFIG ===
 const SCROLL_STEP = 15
 const SCROLL_SPEED = 5 // ms between steps
@@ -16,6 +18,8 @@ let lastScrollDir = 0
 document.addEventListener('DOMContentLoaded', () => {
   scrollArea.focus()
   document.addEventListener('click', (e) => {
+    if (suppressFocus) return // skip if indicator triggered
+
     const interactive = e.target.closest('button, a, .indicator-dot')
 
     if (!interactive) {
@@ -24,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       // Delay returning focus until after the interaction finishes
       setTimeout(() => {
-        scrollArea.focus()
+        if (!suppressFocus) scrollArea.focus()
       }, 600)
     }
   })
@@ -117,8 +121,15 @@ sections.forEach((_, i) => {
   dot.addEventListener('click', () => {
     stopContinuousScroll()
     cancelMomentum()
+    suppressFocus = true // prevent scrollArea.focus from firing later
+
     const y = sections[i].offsetTop
     scrollArea.scrollTo({ top: y, behavior: 'smooth' })
+
+    // Re-enable focus after scroll settles
+    setTimeout(() => {
+      suppressFocus = false
+    }, 1000)
   })
 
   indicatorsContainer.appendChild(dot)
